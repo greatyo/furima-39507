@@ -2,17 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type    | Options      |
-| ------------------ | ------- | ------------ |
-| email              | string  | null: false  |
-|                    |         | unique: true |
-| encrypted_password | string  | null: false  | 6字以上半角英と半角数使用
-| nickname           | string  | null: false  |
-| last_name          | string  | null: false  | 名前 全角
-| first_name         | string  | null: false  | 苗字 全角
-| last_name_kana     | string  | null: false  | 名前 全角カナ
-| first_name_kana    | string  | null: false  | 苗字 全角カナ
-| birthday           | date    | null: false  | ActiveHash
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| email              | string  | null: false,unique: true  |
+| encrypted_password | string  | null: false               | 6字以上半角英と半角数使用
+| nickname           | string  | null: false               |
+| last_name          | string  | null: false               | 名前 全角
+| first_name         | string  | null: false               | 苗字 全角
+| last_name_kana     | string  | null: false               | 名前 全角カナ
+| first_name_kana    | string  | null: false               | 苗字 全角カナ
+| birthday           | date    | null: false               | ActiveHash
 
 ### Association
 
@@ -32,7 +31,7 @@
 | delivery_charge_id | integer    | null: false                   | 配送料負担 ActiveHash
 | region_id          | integer    | null: false                   | 発送元地域 ActiveHash
 | shipping_day_id    | integer    | null: false                   | 発送までの日数 ActiveHash
-| price              | string     | null: false                   |
+| price              | integer    | null: false                   |
 | user               | references | foreign_key: true,null: false |
 
 ### Association
