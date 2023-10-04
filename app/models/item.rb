@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one :sold_item
+  has_one_attached :image
 
   validates :name, presence: true, length:{maximum:40} #商品名40字まで
   validates :explanation, presence: true, length:{maximum:1000} #商品の説明1000字まで
@@ -10,5 +11,6 @@ class Item < ApplicationRecord
   validates :region_id, presence: true                   #発送元地域 ActiveHash
   validates :shipping_day_id, presence: true                   #発送までの日数 ActiveHash
   validates :price, presence: true
+  validates :image, presence: true
 
 end
