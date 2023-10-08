@@ -18,24 +18,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空では登録できない' do
-        @item.name = ""
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品名が40字より多い場合は登録できない' do
         @item.name = Faker::String.random(length: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
       end
       it '商品の説明が空では登録できない' do
-        @item.explanation = ""
+        @item.explanation = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it '商品の説明が1,000文字より多い場合は登録できない' do
         @item.explanation = Faker::String.random(length: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Explanation is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Explanation is too long (maximum is 1000 characters)')
       end
       it 'カテゴリーを選択しなければ登録できない' do
         @item.category_id = 0
@@ -63,24 +63,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
       it '価格が空では登録できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格が半角数値以外は登録できない' do
-        @item.price = "１２３４"
+        @item.price = '１２３４'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '価格が300円未満では登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Price must be in 300..9999999')
       end
       it '価格が9,999,999円より大きい場合は登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Price must be in 300..9999999')
       end
     end
   end
