@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one :sold_item
+  # has_one :sold_item
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -17,6 +17,6 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, numericality: { other_than: 0, message: "can't be blank" }, presence: true # 配送料負担 ActiveHash
   validates :region_id, numericality: { other_than: 0, message: "can't be blank" }, presence: true # 発送元地域 ActiveHash
   validates :shipping_day_id, numericality: { other_than: 0, message: "can't be blank" }, presence: true # 発送までの日数 ActiveHash
-  validates :price, numericality: { in: 300..9_999_999 }, presence: true
+  validates :price, numericality: { only_integer: true, in: 300..9_999_999 }, presence: true
   validates :image, presence: true
 end
