@@ -23,8 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return if current_user.id == @item.user_id
-
+    unless SoldItem.exists?(item_id: @item.id) 
+      return if current_user.id == @item.user_id
+    end
     redirect_to action: :index
   end
 
