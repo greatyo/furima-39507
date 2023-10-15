@@ -7,7 +7,7 @@ class SoldAddress
     validates :region_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :street_address
-    validates :telephone, numericality: {only_integer: true}
+    validates :telephone, numericality: {only_integer: true}, length: { in: 10..11 }
     validates :user_id
     validates :item_id
   end
