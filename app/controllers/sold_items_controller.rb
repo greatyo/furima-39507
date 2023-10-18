@@ -13,7 +13,6 @@ class SoldItemsController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @sold_address = SoldAddress.new(sold_params)
-    binding.pry
     if @sold_address.valid?
       pay_item
       @sold_address.save
