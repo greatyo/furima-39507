@@ -69,6 +69,11 @@ RSpec.describe SoldAddress, type: :model do
         @sold_address.valid?
         expect(@sold_address.errors.full_messages).to include("Telephone is not a number")
       end
+      it 'tokenが空では保存できないこと' do
+        @sold_address.token = ''
+        @sold_address.valid?
+        expect(@sold_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
