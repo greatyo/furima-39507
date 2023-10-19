@@ -4,8 +4,9 @@ RSpec.describe SoldAddress, type: :model do
   describe '購入情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      # item = FactoryBot.create(:item)
-      @sold_address = FactoryBot.build(:sold_address, user_id: user.id, item_id: '55')
+      item = FactoryBot.create(:item)
+      @sold_address = FactoryBot.build(:sold_address, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '内容に問題ない場合' do
@@ -73,6 +74,16 @@ RSpec.describe SoldAddress, type: :model do
         @sold_address.token = ''
         @sold_address.valid?
         expect(@sold_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @sold_address.user_id = nil
+        @sold_address.valid?
+        expect(@sold_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @sold_address.item_id = nil
+        @sold_address.valid?
+        expect(@sold_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

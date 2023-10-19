@@ -1,9 +1,9 @@
 class SoldItemsController < ApplicationController
   before_action :authenticate_user!, only: :index
+  before_action :item_data, only: [:index, :create]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @sold_address = SoldAddress.new
     return unless SoldItem.exists?(item_id: @item.id) || @item.user_id == current_user.id
 
@@ -12,7 +12,6 @@ class SoldItemsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    @sold_address = SoldAddress.new(sold_params)
     if @sold_address.valid?
       pay_item
       @sold_address.save
@@ -39,4 +38,9 @@ class SoldItemsController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def item_data
+    @item = Item.find(params[:item_id])
+  end
+
 end

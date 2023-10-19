@@ -14,8 +14,8 @@ class SoldAddress
   end
 
   def save
-    sold_item = SoldItem.create(item_id:, user_id:)
-    ShippingAddress.create(post_code:, region_id:, city:, street_address:,
-                           building_name:, telephone:, sold_item_id: sold_item.id)
+    sold_item = SoldItem.create(item_id: item_id, user_id: user_id)
+    ShippingAddress.create(post_code: post_code, region_id: region_id, city: city, street_address: street_address,
+                           building_name: building_name, telephone: telephone, sold_item_id: sold_item.id)
   end
 end
