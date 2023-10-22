@@ -8,6 +8,3 @@ window.addEventListener('turbo:load', () => {
     addProfitDom.innerHTML = priceInput.value - Math.floor(priceInput.value / 10);
   })
 })
-
-
-(Math.floor(priceInput / 10));
